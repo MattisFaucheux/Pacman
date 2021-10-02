@@ -38,4 +38,15 @@ public class Pacman : MonoBehaviour
             movements.SetDirection(Vector2.down);
         }
     }
+
+    public void EnablePowerUp(float duration, float newSpeedMultiplier)
+    {
+        movements.SetSpeedMultiplier(newSpeedMultiplier);
+        Invoke("DisablePowerUp", duration);
+    }
+
+    private void DisablePowerUp()
+    {
+        movements.SetSpeedMultiplier(1.0f);
+    }
 }

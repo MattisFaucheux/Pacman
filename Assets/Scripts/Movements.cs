@@ -6,6 +6,7 @@ using UnityEngine;
 public class Movements : MonoBehaviour
 {
     [SerializeField] private float speed = 5.0f;
+    private float speedMultiplier = 1.0f;
     public Vector2 direction { get; private set; }
     public Vector2 nextDirection { get; private set; }
     public Vector2 initialDirection = Vector2.zero;
@@ -34,9 +35,9 @@ public class Movements : MonoBehaviour
 
     private void Move()
     {
-        if (!rb || !CanGoInDirection(direction, 0.15f)) { return; }
+        if (!rb || !CanGoInDirection(direction, 0.15f  * speedMultiplier)) { return; }
 
-        Vector2 movement = direction * speed * Time.fixedDeltaTime;
+        Vector2 movement = direction * speed * speedMultiplier * Time.fixedDeltaTime;
 
         rb.MovePosition(rb.position + movement);
     }
@@ -58,5 +59,10 @@ public class Movements : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.BoxCast(transform.position , Vector2.one * 0.75f, 0.0f, newDirection, distanceCheck, wallLayer);
         return hit.collider == null;
+    }
+
+    public void SetSpeedMultiplier(float newSpeedMultiplier)
+    {
+        speedMultiplier = newSpeedMultiplier;
     }
 }

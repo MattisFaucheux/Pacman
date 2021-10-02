@@ -14,7 +14,6 @@ public class Ghost : MonoBehaviour
 
     public Transform target;
 
-    bool scared = false;
 
     private void Start()
     {
@@ -37,7 +36,7 @@ public class Ghost : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            if(scared)
+            if(ghostAI.isScared)
             {
                 Eaten();
             }

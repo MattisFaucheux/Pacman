@@ -18,6 +18,13 @@ public class GameManager : MonoBehaviour
     public void PowerUpCollectibleEaten(PowerUpCollectible collectible)
     {
         CollectibleEaten(collectible);
+
+        foreach (Ghost ghost in ghosts)
+        {
+            ghost.ghostAI.EnableGhostScared(collectible.powerUpDuration);
+        }
+
+        pacman.EnablePowerUp(collectible.powerUpDuration, collectible.speedMultiplier);
     }
 
     public void PacmanEaten()

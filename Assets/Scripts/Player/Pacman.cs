@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Movements))]
 public class Pacman : MonoBehaviour
 {
-    private PlayerMovements movements;
+    private Movements movements;
 
     private void Start()
     {
-        movements = GetComponent<PlayerMovements>();
+        movements = GetComponent<Movements>();
     }
 
     private void Update()

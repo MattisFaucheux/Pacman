@@ -6,7 +6,7 @@ public class Collectible : MonoBehaviour
 {
     public int points = 10;
 
-    protected void Eaten()
+    protected virtual void Eaten()
     {
         FindObjectOfType<GameManager>().CollectibleEaten(this);
     }

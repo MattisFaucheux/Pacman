@@ -7,9 +7,18 @@ public class Pacman : MonoBehaviour
 {
     private Movements movements;
 
+    private Vector3 initialPos;
+
     private void Start()
     {
         movements = GetComponent<Movements>();
+        initialPos = transform.position;
+    }
+
+    public void Reset() 
+    {
+        movements.Reset();
+        transform.position = initialPos;
     }
 
     private void Update()

@@ -14,11 +14,21 @@ public class Ghost : MonoBehaviour
 
     public Transform target;
 
+    private Vector3 initialPos;
+
 
     private void Start()
     {
         movements = GetComponent<Movements>();
         ghostAI = GetComponent<GhostAI>();
+        initialPos = transform.position;
+    }
+
+    public void Reset() 
+    {
+        ghostAI.Reset();
+        movements.Reset();
+        transform.position = initialPos;
     }
 
 

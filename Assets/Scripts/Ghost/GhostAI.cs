@@ -16,12 +16,16 @@ public class GhostAI : MonoBehaviour
     public enGhostState initialState;
 
     public Ghost ghost { get; private set; }
-
     public bool isScared = false;
 
     private void Start() 
     {
         ghost = GetComponent<Ghost>();
+        currentState = initialState;
+    }
+
+    public void Reset() 
+    {
         currentState = initialState;
     }
 
@@ -42,6 +46,8 @@ public class GhostAI : MonoBehaviour
     {
         GhostPath path = collider.GetComponent<GhostPath>();
         
+        if(!path) { return; }
+
         switch (currentState)
         {
             case enGhostState.SCATTER : ScatterLogic(path); break;
@@ -53,61 +59,55 @@ public class GhostAI : MonoBehaviour
 
     private void ScatterLogic(GhostPath path)
     {
-        if(path)
+        int nbPathsAvailables = path.availableDirections.Count;
+
+        if(nbPathsAvailables <= 0) { return; }
+
+        int index = 0;
+
+        if(nbPathsAvailables > 1)
         {
-            int nbPathsAvailables = path.availableDirections.Count;
+            index = Random.Range(0, nbPathsAvailables);
 
-            if(nbPathsAvailables <= 0) { return; }
-
-            int index = 0;
-
-            if(nbPathsAvailables > 1)
+            if(path.availableDirections[index] == -ghost.movements.direction)
             {
-                index = Random.Range(0, nbPathsAvailables);
+                index++;
 
-                if(path.availableDirections[index] == -ghost.movements.direction)
+                if(index >= nbPathsAvailables)
                 {
-                    index++;
-
-                    if(index >= nbPathsAvailables)
-                    {
-                        index = 0;
-                    }
+                    index = 0;
                 }
             }
+        }
 
-            ghost.movements.SetDirection(path.availableDirections[index]);
-        } 
+        ghost.movements.SetDirection(path.availableDirections[index]);
     }
 
     private void ChaseLogic(GhostPath path)
     {
-        if(path)
-        {
-            int nbPathsAvailables = path.availableDirections.Count;
+        int nbPathsAvailables = path.availableDirections.Count;
 
-                if(nbPathsAvailables <= 0) { return; }
+            if(nbPathsAvailables <= 0) { return; }
 
-                Vector2 direction = Vector2.zero;
+            Vector2 direction = Vector2.zero;
 
-                if(nbPathsAvailables > 1)
+            if(nbPathsAvailables > 1)
+            {
+                float minDistance = float.MaxValue;
+
+                foreach (Vector2 pathDirection in path.availableDirections)
                 {
-                    float minDistance = float.MaxValue;
+                    float distance = (ghost.target.position - (transform.position + new Vector3(pathDirection.x, pathDirection.y))).sqrMagnitude;
 
-                    foreach (Vector2 pathDirection in path.availableDirections)
+                    if(distance < minDistance)
                     {
-                        float distance = (ghost.target.position - (transform.position + new Vector3(pathDirection.x, pathDirection.y))).sqrMagnitude;
-
-                        if(distance < minDistance)
-                        {
-                            minDistance = distance;
-                            direction = pathDirection;
-                        }
+                        minDistance = distance;
+                        direction = pathDirection;
                     }
                 }
+            }
 
-                ghost.movements.SetDirection(direction);
-        }
+            ghost.movements.SetDirection(direction);
     }
 
     private void FrightenedLogic(GhostPath path)

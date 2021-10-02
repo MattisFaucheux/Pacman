@@ -28,6 +28,12 @@ public class Movements : MonoBehaviour
         }
     }
 
+    public void Reset() 
+    {
+        speedMultiplier = 1.0f;
+        direction = initialDirection;
+    }
+
     private void FixedUpdate() 
     {
         Move();
@@ -35,7 +41,7 @@ public class Movements : MonoBehaviour
 
     private void Move()
     {
-        if (!rb || !CanGoInDirection(direction, 0.15f  * speedMultiplier)) { return; }
+        if (!rb || !CanGoInDirection(direction, 0.2f)) { return; }
 
         Vector2 movement = direction * speed * speedMultiplier * Time.fixedDeltaTime;
 

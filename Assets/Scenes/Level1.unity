@@ -1027,12 +1027,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7f8504b3f75d594a8bfb0fd9db6db51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lives: 3
   pacman: {fileID: 169093497}
   ghosts:
   - {fileID: 2006897356}
   - {fileID: 1232939801}
   - {fileID: 2142833304}
   - {fileID: 1315172908}
+  collectibles: {fileID: 1966431336}
 --- !u!4 &451396613
 Transform:
   m_ObjectHideFlags: 0
@@ -6891,6 +6893,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2040914724621121179, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121181, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_Name
       value: GhostBlue
@@ -6977,6 +6983,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121176, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040914724621121179, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121181, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
@@ -10357,6 +10367,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2040914724621121179, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121181, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_Name
       value: GhostYellow
@@ -10431,6 +10445,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121176, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2040914724621121179, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121181, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}

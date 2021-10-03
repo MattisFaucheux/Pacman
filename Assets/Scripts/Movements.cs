@@ -5,8 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Movements : MonoBehaviour
 {
-    [SerializeField] private float speed = 5.0f;
+    [Min(0)] [SerializeField] private float speed = 5.0f;
     private float speedMultiplier = 1.0f;
+
     public Vector2 direction { get; private set; }
     public Vector2 nextDirection { get; private set; }
     public Vector2 initialDirection = Vector2.zero;
@@ -28,15 +29,15 @@ public class Movements : MonoBehaviour
         }
     }
 
+    private void FixedUpdate() 
+    {
+        Move();
+    }
+
     public void Reset() 
     {
         speedMultiplier = 1.0f;
         direction = initialDirection;
-    }
-
-    private void FixedUpdate() 
-    {
-        Move();
     }
 
     private void Move()
@@ -44,7 +45,6 @@ public class Movements : MonoBehaviour
         if (!rb || !CanGoInDirection(direction, 0.2f)) { return; }
 
         Vector2 movement = direction * speed * speedMultiplier * Time.fixedDeltaTime;
-
         rb.MovePosition(rb.position + movement);
     }
 

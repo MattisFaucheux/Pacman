@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class GhostPath : MonoBehaviour
 {
-    public List<Vector2> availableDirections;
     public LayerMask wallLayer;
+    public List<Vector2> availableDirections { get; private set; }
     
     private void Start()
     {
-        this.availableDirections = new List<Vector2>();
+        availableDirections = new List<Vector2>();
         CheckAvailableDirection(Vector2.right);
         CheckAvailableDirection(Vector2.left);
         CheckAvailableDirection(Vector2.up);

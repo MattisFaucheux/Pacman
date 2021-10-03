@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour
 {
-    public int points = 10;
+    [Min(0)]public int points = 10;
 
     protected virtual void Eaten()
     {

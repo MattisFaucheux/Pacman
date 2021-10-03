@@ -5,25 +5,25 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private int score = 0;
     [SerializeField] private int lives = 3;
+    private int score = 0;
     private int highScore;
 
     [SerializeField] private Text scoreText;
     [SerializeField] private Text highScoreText;
     [SerializeField] private Text livesText;
 
-    [SerializeField]private Pacman pacman;
-    [SerializeField]private Ghost[] ghosts;
-    [SerializeField]private Transform collectibles;
+    [SerializeField] private Pacman pacman;
+    [SerializeField] private Ghost[] ghosts;
+    [SerializeField] private Transform collectibles;
 
     public float waitingTimeRestartGame = 5.0f;
-
 
     private void Start()
     {
         scoreText.text = "Score : \n" + score;
         livesText.text = "Lives : \n" + lives;
+
         if(PlayerPrefs.HasKey("Player High Score"))
         {
             SetHighScore(PlayerPrefs.GetInt("Player High Score"));
@@ -165,5 +165,4 @@ public class GameManager : MonoBehaviour
         highScore = newHighScore;
         highScoreText.text = "High Score : \n" + highScore;
     }
-
 }

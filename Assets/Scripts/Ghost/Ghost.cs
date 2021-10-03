@@ -6,19 +6,14 @@ using UnityEngine;
 [RequireComponent(typeof(GhostAI))]
 public class Ghost : MonoBehaviour
 {
-    public int points = 100;
+    [Min(0)] public int points = 100;
+    public Pacman target;
+    [Min(0f)] public float initialTimeToSpawn = 5.0f;
+    [Min(0f)] public float timeToRespawn = 8.0f;
 
     public Movements movements { get; private set; }
-
     public GhostAI ghostAI { get; private set; }
-
-    public Pacman target;
-
     private Vector3 initialPos;
-
-    public float initialTimeToSpawn = 5.0f;
-    public float timeToRespawn = 8.0f;
-
 
     private void Start()
     {
@@ -28,6 +23,22 @@ public class Ghost : MonoBehaviour
 
         Unactivate();
         Invoke("Activate", initialTimeToSpawn);
+    }
+
+    public void Reset(float timeToActivate = 0.0f) 
+    {
+        CancelInvoke();
+        
+        Unactivate();
+        ResetPosition();
+        Invoke("Activate", timeToActivate);
+    }
+
+    private void ResetPosition()
+    {
+        ghostAI.Reset();
+        movements.Reset();
+        transform.position = initialPos;
     }
 
     private void Activate()
@@ -41,22 +52,6 @@ public class Ghost : MonoBehaviour
         movements.enabled = false;
         ghostAI.enabled = false;
     }
-
-    public void Reset(float timeToActivate = 0.0f) 
-    {
-        CancelInvoke();
-        Unactivate();
-        ResetPosition();
-        Invoke("Activate", timeToActivate);
-    }
-
-    private void ResetPosition()
-    {
-        ghostAI.Reset();
-        movements.Reset();
-        transform.position = initialPos;
-    }
-
 
     private void Eaten()
     {

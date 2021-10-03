@@ -6,7 +6,6 @@ using UnityEngine;
 public class Pacman : MonoBehaviour
 {
     public Movements movements { get; private set; }
-
     private Vector3 initialPos;
 
     private void Start()
@@ -15,17 +14,17 @@ public class Pacman : MonoBehaviour
         initialPos = transform.position;
     }
 
+    private void Update()
+    {
+        UpdateMovements();
+    }
+
     public void Reset() 
     {
         CancelInvoke();
 
         movements.Reset();
         transform.position = initialPos;
-    }
-
-    private void Update()
-    {
-        UpdateMovements();
     }
 
     private void UpdateMovements()

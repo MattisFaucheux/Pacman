@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Movements))]
 public class Pacman : MonoBehaviour
 {
-    private Movements movements;
+    public Movements movements { get; private set; }
 
     private Vector3 initialPos;
 

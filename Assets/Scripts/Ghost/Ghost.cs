@@ -12,7 +12,7 @@ public class Ghost : MonoBehaviour
 
     public GhostAI ghostAI { get; private set; }
 
-    public Transform target;
+    public Pacman target;
 
     private Vector3 initialPos;
 
@@ -68,9 +68,9 @@ public class Ghost : MonoBehaviour
         FindObjectOfType<GameManager>().PacmanEaten();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collider.gameObject.tag == "Player")
         {
             if(ghostAI.isScared)
             {

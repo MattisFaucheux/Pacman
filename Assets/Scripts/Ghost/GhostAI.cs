@@ -9,7 +9,8 @@ public class GhostAI : MonoBehaviour
     {
         SCATTER,
         CHASE,
-        FRIGHTNED
+        FRIGHTNED,
+        TRAPPER
     };
 
     private enGhostState currentState;
@@ -56,6 +57,7 @@ public class GhostAI : MonoBehaviour
             case enGhostState.SCATTER : ScatterLogic(path); break;
             case enGhostState.CHASE : ChaseLogic(path); break;
             case enGhostState.FRIGHTNED : FrightenedLogic(path); break;
+            case enGhostState.TRAPPER : TrapperLogic(path); break;
             default: ScatterLogic(path); break;
         }
     }
@@ -100,7 +102,7 @@ public class GhostAI : MonoBehaviour
 
                 foreach (Vector2 pathDirection in path.availableDirections)
                 {
-                    float distance = (ghost.target.position - (transform.position + new Vector3(pathDirection.x, pathDirection.y))).sqrMagnitude;
+                    float distance = (ghost.target.transform.position - (transform.position + new Vector3(pathDirection.x, pathDirection.y))).sqrMagnitude;
 
                     if(distance < minDistance)
                     {
@@ -127,11 +129,39 @@ public class GhostAI : MonoBehaviour
 
                 foreach (Vector2 pathDirection in path.availableDirections)
                 {
-                    float distance = (ghost.target.position - (transform.position + new Vector3(pathDirection.x, pathDirection.y))).sqrMagnitude;
+                    float distance = (ghost.target.transform.position - (transform.position + new Vector3(pathDirection.x, pathDirection.y))).sqrMagnitude;
 
                     if(distance > maxDistance)
                     {
                         maxDistance = distance;
+                        direction = pathDirection;
+                    }
+                }
+            }
+
+            ghost.movements.SetDirection(direction);
+    }
+
+    private void TrapperLogic(GhostPath path)
+    {
+        int nbPathsAvailables = path.availableDirections.Count;
+
+            if(nbPathsAvailables <= 0) { return; }
+
+            Vector2 direction = Vector2.zero;
+            Vector3 targetPos = ghost.target.transform.position + (new Vector3(ghost.target.movements.direction.x, ghost.target.movements.direction.x) * 4);
+
+            if(nbPathsAvailables > 1)
+            {
+                float minDistance = float.MaxValue;
+
+                foreach (Vector2 pathDirection in path.availableDirections)
+                {
+                    float distance = (targetPos - (transform.position + new Vector3(pathDirection.x, pathDirection.y))).sqrMagnitude;
+
+                    if(distance < minDistance)
+                    {
+                        minDistance = distance;
                         direction = pathDirection;
                     }
                 }

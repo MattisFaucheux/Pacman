@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!4 &169093495 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5186547122767098216, guid: d23128ca35a5792488312499769bea26, type: 3}
-  m_PrefabInstance: {fileID: 5186547122598533151}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &169093497 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5186547122767098214, guid: d23128ca35a5792488312499769bea26, type: 3}
@@ -7180,7 +7175,7 @@ PrefabInstance:
     - target: {fileID: 2040914724621121170, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 169093495}
+      objectReference: {fileID: 169093497}
     - target: {fileID: 2040914724621121170, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: initialTimeToSpawn
       value: 6
@@ -7239,7 +7234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121179, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121181, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_Name
@@ -7280,7 +7275,7 @@ PrefabInstance:
     - target: {fileID: 2040914724621121170, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 169093495}
+      objectReference: {fileID: 169093497}
     - target: {fileID: 2040914724621121170, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: initialTimeToSpawn
       value: 8
@@ -7339,7 +7334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121179, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121181, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_Name
@@ -7351,7 +7346,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2887406727420626876, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: initialState
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
@@ -10956,7 +10951,7 @@ PrefabInstance:
     - target: {fileID: 2040914724621121170, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 169093495}
+      objectReference: {fileID: 169093497}
     - target: {fileID: 2040914724621121170, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: initialTimeToSpawn
       value: 7
@@ -11015,7 +11010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121179, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121181, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_Name
@@ -11024,6 +11019,10 @@ PrefabInstance:
     - target: {fileID: 2040914724621121181, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2887406727420626876, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
+      propertyPath: initialState
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
@@ -11048,7 +11047,7 @@ PrefabInstance:
     - target: {fileID: 2040914724621121170, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 169093495}
+      objectReference: {fileID: 169093497}
     - target: {fileID: 2040914724621121173, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: initialDirection.x
       value: 0
@@ -11103,7 +11102,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121179, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_IsTrigger
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2040914724621121181, guid: 6707679a2bf608c4e999d335f1dd4baf, type: 3}
       propertyPath: m_Name

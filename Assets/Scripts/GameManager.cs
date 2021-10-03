@@ -1,19 +1,48 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private int score = 0;
     [SerializeField] private int lives = 3;
+    private int highScore;
+
+    [SerializeField] private Text scoreText;
+    [SerializeField] private Text highScoreText;
+    [SerializeField] private Text livesText;
 
     [SerializeField]private Pacman pacman;
     [SerializeField]private Ghost[] ghosts;
     [SerializeField]private Transform collectibles;
 
+    public float waitingTimeRestartGame = 5.0f;
+
+
+    private void Start()
+    {
+        scoreText.text = "Score : \n" + score;
+        livesText.text = "Lives : \n" + lives;
+        if(PlayerPrefs.HasKey("Player High Score"))
+        {
+            SetHighScore(PlayerPrefs.GetInt("Player High Score"));
+        }
+        else
+        {
+            SetHighScore(0);
+        }
+
+    }
+
+    private void OnDisable() 
+    {
+        PlayerPrefs.SetInt("Player High Score", highScore);
+    }
+
     public void CollectibleEaten(Collectible collectible)
     {
-        score += collectible.points;
+        SetScore(score + collectible.points);
         collectible.gameObject.SetActive(false);
 
         if(IsLevelFinished())
@@ -37,7 +66,7 @@ public class GameManager : MonoBehaviour
     public void PacmanEaten()
     {
         pacman.gameObject.SetActive(false);
-        lives -= 1;
+        SetLives(lives - 1);
 
         if( lives <= 0)
         {
@@ -51,7 +80,7 @@ public class GameManager : MonoBehaviour
 
     public void GhostEaten(Ghost ghost)
     {
-        score += ghost.points;
+        SetScore(score + ghost.points);
         ghost.gameObject.SetActive(false);
     }
 
@@ -81,12 +110,19 @@ public class GameManager : MonoBehaviour
         {
            collectible.gameObject.SetActive(false);
         }
+
+        if(score > highScore)
+        {
+            SetHighScore(score);
+        }
+
+        Invoke("StartGame", waitingTimeRestartGame);
     }
 
     private void StartGame()
     {
-        lives = 3;
-        score = 0;
+        SetLives(3);
+        SetScore(0);
         RestartLevel();
     }
 
@@ -108,6 +144,24 @@ public class GameManager : MonoBehaviour
            ghost.gameObject.SetActive(true);
            ghost.Reset();
         }
+    }
+
+    private void SetLives(int nbLives)
+    {
+        lives = nbLives;
+        livesText.text = "Lives : \n" + lives;
+    }
+
+    private void SetScore(int newScore)
+    {
+        score = newScore;
+        scoreText.text = "Score : \n" + score;
+    }
+
+    private void SetHighScore(int newHighScore)
+    {
+        highScore = newHighScore;
+        highScoreText.text = "High Score : \n" + highScore;
     }
 
 

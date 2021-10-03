@@ -16,6 +16,10 @@ public class Ghost : MonoBehaviour
 
     private Vector3 initialPos;
 
+    public float initialTimeToSpawn = 5.0f;
+    public float timeToRespawn = 8.0f;
+
+
 
     private void Start()
     {

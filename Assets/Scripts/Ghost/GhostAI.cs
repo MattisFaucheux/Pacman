@@ -27,6 +27,7 @@ public class GhostAI : MonoBehaviour
     public void Reset() 
     {
         currentState = initialState;
+        isScared = false;
     }
 
     public void EnableGhostScared(float duration)

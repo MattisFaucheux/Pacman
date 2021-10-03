@@ -17,6 +17,8 @@ public class Pacman : MonoBehaviour
 
     public void Reset() 
     {
+        CancelInvoke();
+
         movements.Reset();
         transform.position = initialPos;
     }

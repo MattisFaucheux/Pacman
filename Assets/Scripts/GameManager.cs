@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
     public void GhostEaten(Ghost ghost)
     {
         SetScore(score + ghost.points);
-        ghost.gameObject.SetActive(false);
+        ghost.Reset(ghost.timeToRespawn);
     }
 
     private bool IsLevelFinished()
@@ -137,12 +137,14 @@ public class GameManager : MonoBehaviour
 
     private void ResetLevel()
     {
+        CancelInvoke();
+
         pacman.gameObject.SetActive(true);
         pacman.Reset();
         foreach (Ghost ghost in ghosts)
         {
            ghost.gameObject.SetActive(true);
-           ghost.Reset();
+           ghost.Reset(ghost.initialTimeToSpawn);
         }
     }
 
@@ -163,8 +165,5 @@ public class GameManager : MonoBehaviour
         highScore = newHighScore;
         highScoreText.text = "High Score : \n" + highScore;
     }
-
-
-
 
 }

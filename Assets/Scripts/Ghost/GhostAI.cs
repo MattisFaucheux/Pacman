@@ -26,6 +26,8 @@ public class GhostAI : MonoBehaviour
 
     public void Reset() 
     {
+        CancelInvoke();
+
         currentState = initialState;
         isScared = false;
     }

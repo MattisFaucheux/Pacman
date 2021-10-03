@@ -20,15 +20,37 @@ public class Ghost : MonoBehaviour
     public float timeToRespawn = 8.0f;
 
 
-
     private void Start()
     {
         movements = GetComponent<Movements>();
         ghostAI = GetComponent<GhostAI>();
         initialPos = transform.position;
+
+        Unactivate();
+        Invoke("Activate", initialTimeToSpawn);
     }
 
-    public void Reset() 
+    private void Activate()
+    {
+        movements.enabled = true;
+        ghostAI.enabled = true;
+    }
+
+    private void Unactivate()
+    {
+        movements.enabled = false;
+        ghostAI.enabled = false;
+    }
+
+    public void Reset(float timeToActivate = 0.0f) 
+    {
+        CancelInvoke();
+        Unactivate();
+        ResetPosition();
+        Invoke("Activate", timeToActivate);
+    }
+
+    private void ResetPosition()
     {
         ghostAI.Reset();
         movements.Reset();
